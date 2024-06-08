@@ -8,7 +8,7 @@ from __future__ import annotations
 import pytest
 from common import HOSTNAME, SERIAL_NO_0, SERIAL_NO_1, gwy_with_heaterlist
 
-from src.incomfortclient import (
+from incomfortclient import (
     HEATERLIST,
     NULL_SERIAL_NO,
     InvalidGateway,
@@ -35,7 +35,7 @@ async def test_gateway_invalid():
         await gwy_with_heaterlist(None)
     except InvalidGateway:
         return
-    assert False
+    raise AssertionError
 
 
 @pytest.mark.asyncio
@@ -45,7 +45,7 @@ async def test_heaterlist_empty(index, gateways=GATEWAYS_SANS_HEATERS):
         await gwy_with_heaterlist(HOSTNAME, heaterlist=gateways[index])
     except InvalidHeaterList:
         return
-    assert False
+    raise AssertionError
 
 
 @pytest.mark.asyncio
